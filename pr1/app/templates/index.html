@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Погода — ПР1</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --error: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+    body { 
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+      max-width: 32rem; 
+      margin: 4rem auto; 
+      padding: 0 1.5rem; 
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    h1 { text-align: center; margin-bottom: 2rem; color: var(--primary); }
+    form { 
+      display: flex; 
+      gap: .75rem; 
+      margin-bottom: 2rem;
+      background: var(--card-bg);
+      padding: 0.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+    input { 
+      flex: 1; 
+      padding: 0.75rem 1rem; 
+      font-size: 1rem; 
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: var(--primary); }
+    button { 
+      padding: 0.75rem 1.5rem; 
+      font-size: 1rem; 
+      font-weight: 600;
+      cursor: pointer; 
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.9; }
+    button:disabled { background-color: var(--text-muted); cursor: not-allowed; }
+
+    #result { min-height: 5rem; }
+    
+    .weather-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .city-name { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.25rem; }
+    .country { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .weather-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-item { background: #f1f5f9; padding: 1rem; border-radius: 12px; }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat-value { font-size: 1.25rem; font-weight: 700; margin-top: 0.25rem; }
+
+    .error-box {
+      background: #fef2f2;
+      border-left: 4px solid var(--error);
+      padding: 1rem;
+      border-radius: 8px;
+      color: #991b1b;
+      font-size: 0.95rem;
+    }
+    .loading { text-align: center; color: var(--text-muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Погода</h1>
+
+  <form id="weather-form">
+    <input id="city" name="city" placeholder="Введіть назву міста (напр. Київ)" autocomplete="off" required>
+    <button type="submit" id="submit-btn">Показати</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById('weather-form');
+    const result = document.getElementById('result');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const city = document.getElementById('city').value.trim();
+      if (!city) return;
+
+      result.innerHTML = '<div class="loading">Завантаження...</div>';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch('/api/weather?city=' + encodeURIComponent(city));
+        const data = await response.json();
+
+        if (!response.ok) {
+          const message = data.detail || 'Невідома помилка';
+          result.innerHTML = `<div class="error-box"><strong>Помилка:</strong> ${message}</div>`;
+          return;
+        }
+
+        result.innerHTML = `
+          <div class="weather-card">
+            <div class="city-name">${data.city}</div>
+            <div class="country">${data.country}</div>
+            <div class="weather-grid">
+              <div class="stat-item">
+                <div class="stat-label">Температура</div>
+                <div class="stat-value">${data.temperature}${data.temperature_unit}</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Вітер</div>
+                <div class="stat-value">${data.wind_speed} ${data.wind_speed_unit}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        result.innerHTML = '<div class="error-box">Не вдалося звернутися до сервера. Перевірте з’єднання.</div>';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
+
