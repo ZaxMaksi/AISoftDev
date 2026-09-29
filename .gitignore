@@ -21,9 +21,19 @@ __pycache__/
 pr2/eval/images/
 pr2/eval/expected.json
 
-# Власний набір звернень і висновки (ПР3)
+# Власний набір звернень і висновки (ПР3, ПР4)
 pr3/compare/requests.json
 pr3/compare/findings.md
+pr4/compare/requests.json
+pr4/compare/findings.md
+
+# Збудований індекс і власний набір запитів (ПР5): індекс відтворюється
+# командою python ingest.py або python scripts/build_index.py
+index/
+pr5/index/
+*.pyc
+pr5/compare/queries.json
+pr5/compare/findings.md
 
 # Редактори та ОС
 .vscode/
