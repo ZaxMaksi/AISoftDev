@@ -28,12 +28,16 @@ pr4/compare/requests.json
 pr4/compare/findings.md
 
 # Збудований індекс і власний набір запитів (ПР5): індекс відтворюється
-# командою python ingest.py або python scripts/build_index.py
-index/
+# командою python ingest.py
 pr5/index/
-*.pyc
 pr5/compare/queries.json
 pr5/compare/findings.md
+
+# Індекс і власний набір питань (ПР6): індекс відтворюється командою
+# python ingest.py
+pr6/index/
+pr6/eval/questions.json
+pr6/eval/findings.md
 
 # Редактори та ОС
 .vscode/
