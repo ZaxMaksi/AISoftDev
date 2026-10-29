@@ -1,0 +1,112 @@
+{
+  "own/rahunok-02-faded-noisy.jpg": {
+    "source": "rahunok-02",
+    "variant": "own-faded-noisy",
+    "note": "Власний зразок: rahunok-02 зі зниженим контрастом 0.3 та шумом 25 через degrade.py.",
+    "fields": {
+      "document_type": "рахунок",
+      "number": "58",
+      "date": "2026-09-05",
+      "valid_until": "2026-09-12",
+      "supplier": {
+        "name": "ФОП Коваленко Ірина Петрівна",
+        "code": "3128704592",
+        "iban": "UA133220010000026007315204418"
+      },
+      "buyer": {
+        "name": "ТОВ «Сузірʼя Рітейл»",
+        "code": "44172914"
+      },
+      "items": [
+        {
+          "name": "Кабель USB-C — USB-C, 1 м",
+          "unit": "шт",
+          "quantity": 50,
+          "price": "89.00",
+          "amount": "4450.00"
+        },
+        {
+          "name": "Кабель USB-C — USB-C, 2 м",
+          "unit": "шт",
+          "quantity": 30,
+          "price": "118.00",
+          "amount": "3540.00"
+        },
+        {
+          "name": "Коробка картонна 30×20×10 см",
+          "unit": "шт",
+          "quantity": 200,
+          "price": "14.60",
+          "amount": "2920.00"
+        },
+        {
+          "name": "Пакет паперовий з логотипом",
+          "unit": "шт",
+          "quantity": 300,
+          "price": "3.95",
+          "amount": "1185.00"
+        }
+      ],
+      "total_without_vat": "12095.00",
+      "vat": "0.00",
+      "total": "12095.00"
+    },
+    "expected_checks": [],
+    "expected_decision": "auto"
+  },
+  "own/rahunok-04-blur-lowq.jpg": {
+    "source": "rahunok-04",
+    "variant": "own-blur-lowq",
+    "note": "Власний зразок: rahunok-04 з розмиттям 2.0 та стисненням JPEG 25 через degrade.py. Строк дії відсутній (null).",
+    "fields": {
+      "document_type": "рахунок",
+      "number": "ВД-000731",
+      "date": "2026-09-10",
+      "valid_until": null,
+      "supplier": {
+        "name": "ТОВ «Вега Девайс»",
+        "code": "41088343",
+        "iban": "UA033282090000026009000451267"
+      },
+      "buyer": {
+        "name": "ТОВ «Сузірʼя Рітейл»",
+        "code": "44172914"
+      },
+      "items": [
+        {
+          "name": "Смарт-годинник Вега S, 42 мм, чорний",
+          "unit": "шт",
+          "quantity": 15,
+          "price": "4125.00",
+          "amount": "61875.00"
+        },
+        {
+          "name": "Смарт-годинник Вега S, 46 мм, сріблястий",
+          "unit": "шт",
+          "quantity": 10,
+          "price": "4540.00",
+          "amount": "45400.00"
+        },
+        {
+          "name": "Ремінець силіконовий Вега S",
+          "unit": "шт",
+          "quantity": 40,
+          "price": "310.00",
+          "amount": "12400.00"
+        },
+        {
+          "name": "Зарядний кабель магнітний Вега",
+          "unit": "шт",
+          "quantity": 25,
+          "price": "255.00",
+          "amount": "6375.00"
+        }
+      ],
+      "total_without_vat": "126050.00",
+      "vat": "25210.00",
+      "total": "151260.00"
+    },
+    "expected_checks": [],
+    "expected_decision": "auto"
+  }
+}

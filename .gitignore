@@ -27,9 +27,7 @@ pr3/compare/findings.md
 pr4/compare/requests.json
 pr4/compare/findings.md
 
-# Збудований індекс і власний набір запитів (ПР5): індекс відтворюється
-# командою python ingest.py
-pr5/index/
+# Власний набір запитів і висновки (ПР5)
 pr5/compare/queries.json
 pr5/compare/findings.md
 
@@ -39,9 +37,15 @@ pr6/index/
 pr6/eval/questions.json
 pr6/eval/findings.md
 
+# Власні зразки й висновки (ПР7): власні знімки можуть містити
+# персональні дані, тож до репозиторію не потрапляють
+pr7/samples/own/
+pr7/eval/findings.md
+
 # Редактори та ОС
 .vscode/
 .idea/
 *.swp
 .DS_Store
 Thumbs.db
+pr7/eval/cache_*.json
