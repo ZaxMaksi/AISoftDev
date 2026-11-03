@@ -42,10 +42,13 @@ pr6/eval/findings.md
 pr7/samples/own/
 pr7/eval/findings.md
 
+# Власний набір питань і висновки (ПР8)
+pr8/eval/questions.json
+pr8/eval/findings.md
+
 # Редактори та ОС
 .vscode/
 .idea/
 *.swp
 .DS_Store
 Thumbs.db
-pr7/eval/cache_*.json
