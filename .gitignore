@@ -46,6 +46,11 @@ pr7/eval/findings.md
 pr8/eval/questions.json
 pr8/eval/findings.md
 
+# Стан звернень, власний набір звернень і висновки (ПР9): у стані —
+# тексти звернень клієнтів
+runs/
+pr9/runs/
+
 # Редактори та ОС
 .vscode/
 .idea/
