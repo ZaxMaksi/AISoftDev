@@ -50,6 +50,11 @@ pr8/eval/findings.md
 # тексти звернень клієнтів
 runs/
 pr9/runs/
+pr9/eval/requests.json
+pr9/eval/findings.md
+
+# Висновки перевірки стійкості (ПР10)
+pr10/eval/findings.md
 
 # Редактори та ОС
 .vscode/
