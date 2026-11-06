@@ -1,0 +1,83 @@
+{
+  "run_id": "REQ-a4660a",
+  "customer_id": "C-1003",
+  "text": "Хочу повернути товар.",
+  "status": "needs_info",
+  "route": "return",
+  "steps": [
+    {
+      "n": 1,
+      "name": "parse",
+      "kind": "model",
+      "status": "ok",
+      "detail": "Структурований розбір тексту звернення",
+      "input": "Хочу повернути товар.",
+      "output": "{\n  \"kind\": \"return\",\n  \"order_id\": null,\n  \"item\": null,\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": true,\n  \"needs_operator\": false,\n  \"missing_data\": [\n    \"order_id\",\n    \"item\"\n  ],\n  \"comment\": \"Клієнт хоче повернути товар, але не вказав номер замовлення та назву товару.\"\n}",
+      "elapsed": 0.9004,
+      "usage": {
+        "prompt_tokens": 299,
+        "completion_tokens": 113,
+        "total_tokens": 412
+      },
+      "at": "2026-11-03T21:03:45.292521+00:00"
+    },
+    {
+      "n": 2,
+      "name": "validate_schema",
+      "kind": "code",
+      "status": "ok",
+      "detail": "Валідація схеми та перевірка відсутності галюцинацій",
+      "input": "{\n  \"kind\": \"return\",\n  \"order_id\": null,\n  \"item\": null,\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": true,\n  \"needs_operator\": false,\n  \"missing_data\": [\n    \"order_id\",\n    \"item\"\n  ],\n  \"comment\": \"Клієнт хоче повернути товар, але не вказав номер замовлення та назву товару.\"\n}",
+      "output": {
+        "kind": "return",
+        "order_id": null,
+        "item": null,
+        "reason": null,
+        "quantity": 1,
+        "needs_clarification": true,
+        "needs_operator": false,
+        "missing_data": [
+          "order_id",
+          "item"
+        ],
+        "comment": "Клієнт хоче повернути товар, але не вказав номер замовлення та назву товару."
+      },
+      "elapsed": 0.0046,
+      "usage": null,
+      "at": "2026-11-03T21:03:45.297172+00:00"
+    }
+  ],
+  "data": {
+    "customer_id": "C-1003",
+    "parsed": {
+      "kind": "return",
+      "order_id": null,
+      "item": null,
+      "reason": null,
+      "quantity": 1,
+      "needs_clarification": true,
+      "needs_operator": false,
+      "missing_data": [
+        "order_id",
+        "item"
+      ],
+      "comment": "Клієнт хоче повернути товар, але не вказав номер замовлення та назву товару."
+    }
+  },
+  "pending": null,
+  "decision": null,
+  "reply": "Будь ласка, вкажіть назву товару та номер замовлення, з якого ви хочете оформити повернення.",
+  "stopped": null,
+  "usage": {
+    "prompt_tokens": 299,
+    "completion_tokens": 113,
+    "total_tokens": 412
+  },
+  "elapsed": {
+    "model": 0.9004,
+    "total": 0.905,
+    "code": 0.0046
+  },
+  "created_at": "2026-11-03T21:03:44.392106+00:00",
+  "updated_at": "2026-11-03T21:03:45.297187+00:00"
+}

@@ -1,0 +1,208 @@
+{
+  "run_id": "REQ-a68d2b",
+  "customer_id": "C-1002",
+  "text": "Пилосос уже тиждень лежить у відділенні, а я не можу його забрати. Що робити?",
+  "status": "done",
+  "route": "status",
+  "steps": [
+    {
+      "n": 1,
+      "name": "parse",
+      "kind": "model",
+      "status": "ok",
+      "detail": "Структурований розбір тексту звернення",
+      "input": "Пилосос уже тиждень лежить у відділенні, а я не можу його забрати. Що робити?",
+      "output": "{\n  \"kind\": \"status\",\n  \"order_id\": null,\n  \"item\": \"пилосос\",\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": true,\n  \"needs_operator\": true,\n  \"missing_data\": [\"order_id\"],\n  \"comment\": \"Клієнт не може забрати пилосос з відділення, потрібно з'ясувати номер замовлення.\"\n}",
+      "elapsed": 3.3761,
+      "usage": {
+        "prompt_tokens": 318,
+        "completion_tokens": 107,
+        "total_tokens": 425
+      },
+      "at": "2026-11-03T22:04:02.937962+00:00"
+    },
+    {
+      "n": 2,
+      "name": "validate_schema",
+      "kind": "code",
+      "status": "ok",
+      "detail": "Валідація схеми та перевірка відсутності галюцинацій",
+      "input": "{\n  \"kind\": \"status\",\n  \"order_id\": null,\n  \"item\": \"пилосос\",\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": true,\n  \"needs_operator\": true,\n  \"missing_data\": [\"order_id\"],\n  \"comment\": \"Клієнт не може забрати пилосос з відділення, потрібно з'ясувати номер замовлення.\"\n}",
+      "output": {
+        "kind": "status",
+        "order_id": null,
+        "item": "пилосос",
+        "reason": null,
+        "quantity": 1,
+        "needs_clarification": true,
+        "needs_operator": true,
+        "missing_data": [
+          "order_id"
+        ],
+        "comment": "Клієнт не може забрати пилосос з відділення, потрібно з'ясувати номер замовлення."
+      },
+      "elapsed": 0.0107,
+      "usage": null,
+      "at": "2026-11-03T22:04:02.948741+00:00"
+    },
+    {
+      "n": 3,
+      "name": "list_orders",
+      "kind": "tool",
+      "status": "ok",
+      "detail": "Пошук замовлень клієнта для уточнення статусу",
+      "input": null,
+      "output": [
+        {
+          "order_id": "10466",
+          "created_at": "2026-09-30",
+          "status": "at_pickup_point",
+          "status_label": "Очікує у відділенні",
+          "total": "12999.00",
+          "items_count": 1
+        },
+        {
+          "order_id": "10377",
+          "created_at": "2026-09-08",
+          "status": "delivered",
+          "status_label": "Виконано",
+          "total": "3299.00",
+          "items_count": 1
+        }
+      ],
+      "elapsed": 0.0009,
+      "usage": null,
+      "at": "2026-11-03T22:04:02.949661+00:00"
+    },
+    {
+      "n": 4,
+      "name": "get_order",
+      "kind": "tool",
+      "status": "ok",
+      "detail": "Отримання інформації про замовлення 10466",
+      "input": {
+        "order_id": "10466"
+      },
+      "output": {
+        "order_id": "10466",
+        "customer_id": "C-1002",
+        "created_at": "2026-09-30",
+        "status": "at_pickup_point",
+        "items": [
+          {
+            "sku": "SIR-R10",
+            "name": "Робот-пилосос «Сіріус R10»",
+            "quantity": 1,
+            "price": "12999.00"
+          }
+        ],
+        "total": "12999.00",
+        "delivery": {
+          "method": "branch",
+          "carrier": "Нова пошта",
+          "city": "Львів",
+          "point": "Відділення № 31",
+          "tracking": "20450012411560",
+          "delivered_at": null,
+          "cost": "0.00"
+        },
+        "payment": {
+          "method": "card",
+          "status": "paid",
+          "card_last4": "8812"
+        },
+        "status_label": "Очікує у відділенні"
+      },
+      "elapsed": 0.001,
+      "usage": null,
+      "at": "2026-11-03T22:04:02.951804+00:00"
+    },
+    {
+      "n": 5,
+      "name": "reply",
+      "kind": "model",
+      "status": "ok",
+      "detail": "Генерація відповіді клієнту за фактами",
+      "input": {
+        "order_id": "10466",
+        "status": "at_pickup_point",
+        "status_label": "Очікує у відділенні",
+        "ttn": null,
+        "delivery_method": "branch",
+        "branch": null,
+        "days": null
+      },
+      "output": "Вітаю! Дякую за ваше звернення до інтернет-магазину «Сузір'я».\n\nЯ перевірив інформацію щодо вашого замовлення №10466. Наразі воно має статус «Очікує у відділенні».\n\nОскільки в системі не відображається конкретна адреса відділення, будь ласка, уточніть, у якому саме відділенні ви очікуєте на посилку? Також, якщо у вас є номер накладної (ТТН), будь ласка, надайте його — це допоможе мені швидше з'ясувати ситуацію та допомогти вам отримати пилосос.\n\nЧекаю на вашу відповідь!",
+      "elapsed": 4.6743,
+      "usage": {
+        "prompt_tokens": 299,
+        "completion_tokens": 158,
+        "total_tokens": 457
+      },
+      "at": "2026-11-03T22:04:07.626118+00:00"
+    }
+  ],
+  "data": {
+    "customer_id": "C-1002",
+    "parsed": {
+      "kind": "status",
+      "order_id": null,
+      "item": "пилосос",
+      "reason": null,
+      "quantity": 1,
+      "needs_clarification": true,
+      "needs_operator": true,
+      "missing_data": [
+        "order_id"
+      ],
+      "comment": "Клієнт не може забрати пилосос з відділення, потрібно з'ясувати номер замовлення."
+    },
+    "order": {
+      "order_id": "10466",
+      "customer_id": "C-1002",
+      "created_at": "2026-09-30",
+      "status": "at_pickup_point",
+      "items": [
+        {
+          "sku": "SIR-R10",
+          "name": "Робот-пилосос «Сіріус R10»",
+          "quantity": 1,
+          "price": "12999.00"
+        }
+      ],
+      "total": "12999.00",
+      "delivery": {
+        "method": "branch",
+        "carrier": "Нова пошта",
+        "city": "Львів",
+        "point": "Відділення № 31",
+        "tracking": "20450012411560",
+        "delivered_at": null,
+        "cost": "0.00"
+      },
+      "payment": {
+        "method": "card",
+        "status": "paid",
+        "card_last4": "8812"
+      },
+      "status_label": "Очікує у відділенні"
+    }
+  },
+  "pending": null,
+  "decision": null,
+  "reply": "Вітаю! Дякую за ваше звернення до інтернет-магазину «Сузір'я».\n\nЯ перевірив інформацію щодо вашого замовлення №10466. Наразі воно має статус «Очікує у відділенні».\n\nОскільки в системі не відображається конкретна адреса відділення, будь ласка, уточніть, у якому саме відділенні ви очікуєте на посилку? Також, якщо у вас є номер накладної (ТТН), будь ласка, надайте його — це допоможе мені швидше з'ясувати ситуацію та допомогти вам отримати пилосос.\n\nЧекаю на вашу відповідь!",
+  "stopped": null,
+  "usage": {
+    "prompt_tokens": 617,
+    "completion_tokens": 265,
+    "total_tokens": 882
+  },
+  "elapsed": {
+    "model": 8.0504,
+    "total": 8.063,
+    "code": 0.0107,
+    "tools": 0.0019
+  },
+  "created_at": "2026-11-03T22:03:59.561754+00:00",
+  "updated_at": "2026-11-03T22:04:07.626133+00:00"
+}

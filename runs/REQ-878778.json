@@ -1,0 +1,96 @@
+{
+  "run_id": "REQ-878778",
+  "customer_id": "C-1003",
+  "text": "Дякую за швидку доставку!",
+  "status": "done",
+  "route": "other",
+  "steps": [
+    {
+      "n": 1,
+      "name": "parse",
+      "kind": "model",
+      "status": "ok",
+      "detail": "Структурований розбір тексту звернення",
+      "input": "Дякую за швидку доставку!",
+      "output": "{\n  \"kind\": \"other\",\n  \"order_id\": null,\n  \"item\": null,\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": false,\n  \"needs_operator\": false,\n  \"missing_data\": [],\n  \"comment\": \"Клієнт висловив подяку за швидку доставку.\"\n}",
+      "elapsed": 1.1471,
+      "usage": {
+        "prompt_tokens": 302,
+        "completion_tokens": 90,
+        "total_tokens": 392
+      },
+      "at": "2026-11-03T22:04:49.206193+00:00"
+    },
+    {
+      "n": 2,
+      "name": "validate_schema",
+      "kind": "code",
+      "status": "ok",
+      "detail": "Валідація схеми та перевірка відсутності галюцинацій",
+      "input": "{\n  \"kind\": \"other\",\n  \"order_id\": null,\n  \"item\": null,\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": false,\n  \"needs_operator\": false,\n  \"missing_data\": [],\n  \"comment\": \"Клієнт висловив подяку за швидку доставку.\"\n}",
+      "output": {
+        "kind": "other",
+        "order_id": null,
+        "item": null,
+        "reason": null,
+        "quantity": 1,
+        "needs_clarification": false,
+        "needs_operator": false,
+        "missing_data": [],
+        "comment": "Клієнт висловив подяку за швидку доставку."
+      },
+      "elapsed": 0.0035,
+      "usage": null,
+      "at": "2026-11-03T22:04:49.209689+00:00"
+    },
+    {
+      "n": 3,
+      "name": "reply",
+      "kind": "model",
+      "status": "ok",
+      "detail": "Генерація відповіді клієнту за фактами",
+      "input": {
+        "action": "general_reply",
+        "text": "Дякую за швидку доставку!"
+      },
+      "output": "Вітаю! Щиро дякуємо вам за відгук. Нам дуже приємно знати, що ви залишилися задоволені швидкістю доставки.\n\nБудемо раді бачити вас знову в інтернет-магазині «Сузірʼя»! Гарного вам дня!",
+      "elapsed": 0.9949,
+      "usage": {
+        "prompt_tokens": 235,
+        "completion_tokens": 65,
+        "total_tokens": 300
+      },
+      "at": "2026-11-03T22:04:50.204905+00:00"
+    }
+  ],
+  "data": {
+    "customer_id": "C-1003",
+    "parsed": {
+      "kind": "other",
+      "order_id": null,
+      "item": null,
+      "reason": null,
+      "quantity": 1,
+      "needs_clarification": false,
+      "needs_operator": false,
+      "missing_data": [],
+      "comment": "Клієнт висловив подяку за швидку доставку."
+    }
+  },
+  "pending": null,
+  "decision": null,
+  "reply": "Вітаю! Щиро дякуємо вам за відгук. Нам дуже приємно знати, що ви залишилися задоволені швидкістю доставки.\n\nБудемо раді бачити вас знову в інтернет-магазині «Сузірʼя»! Гарного вам дня!",
+  "stopped": null,
+  "usage": {
+    "prompt_tokens": 537,
+    "completion_tokens": 155,
+    "total_tokens": 692
+  },
+  "elapsed": {
+    "model": 2.142,
+    "total": 2.1455,
+    "code": 0.0035
+  },
+  "created_at": "2026-11-03T22:04:48.059088+00:00",
+  "updated_at": "2026-11-03T22:04:50.204915+00:00"
+}

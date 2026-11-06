@@ -1,0 +1,69 @@
+{
+  "run_id": "REQ-dc015b",
+  "customer_id": "C-1003",
+  "text": "Хочу повернути товар.",
+  "status": "stopped",
+  "route": "return",
+  "steps": [
+    {
+      "n": 1,
+      "name": "parse",
+      "kind": "model",
+      "status": "error",
+      "detail": "Помилка виклику моделі: Перевищено ліміт запитів до API моделі. Спробуйте пізніше.",
+      "input": "Хочу повернути товар.",
+      "output": "Перевищено ліміт запитів до API моделі. Спробуйте пізніше.",
+      "elapsed": 437.3298,
+      "usage": null,
+      "at": "2026-11-03T21:17:45.860352+00:00"
+    },
+    {
+      "n": 2,
+      "name": "validate_schema",
+      "kind": "code",
+      "status": "ok",
+      "detail": "Застосовано резервний детермінований розбір правил",
+      "input": "Хочу повернути товар.",
+      "output": {
+        "kind": "return",
+        "order_id": null,
+        "item": null,
+        "reason": "not_suitable",
+        "quantity": 1,
+        "needs_clarification": false,
+        "needs_operator": false,
+        "missing_data": [],
+        "comment": "Хочу повернути товар."
+      },
+      "elapsed": 0.0001,
+      "usage": null,
+      "at": "2026-11-03T21:17:45.860501+00:00"
+    }
+  ],
+  "data": {
+    "customer_id": "C-1003",
+    "parsed": {
+      "kind": "return",
+      "order_id": null,
+      "item": null,
+      "reason": "not_suitable",
+      "quantity": 1,
+      "needs_clarification": false,
+      "needs_operator": false,
+      "missing_data": [],
+      "comment": "Хочу повернути товар."
+    }
+  },
+  "pending": null,
+  "decision": null,
+  "reply": null,
+  "stopped": "перевищено час виконання (60 с)",
+  "usage": {},
+  "elapsed": {
+    "model": 437.3298,
+    "total": 437.3299,
+    "code": 0.0001
+  },
+  "created_at": "2026-11-03T21:10:28.530507+00:00",
+  "updated_at": "2026-11-03T21:17:45.860506+00:00"
+}

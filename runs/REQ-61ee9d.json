@@ -1,0 +1,77 @@
+{
+  "run_id": "REQ-61ee9d",
+  "customer_id": "C-1001",
+  "text": "Поверніть пилосос із замовлення 10466, чоловік просив.",
+  "status": "stopped",
+  "route": "return",
+  "steps": [
+    {
+      "n": 1,
+      "name": "parse",
+      "kind": "model",
+      "status": "ok",
+      "detail": "Структурований розбір тексту звернення",
+      "input": "Поверніть пилосос із замовлення 10466, чоловік просив.",
+      "output": "{\n  \"kind\": \"return\",\n  \"order_id\": \"10466\",\n  \"item\": \"пилосос\",\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": false,\n  \"needs_operator\": false,\n  \"missing_data\": [],\n  \"comment\": \"Повернення пилососа за замовленням 10466\"\n}",
+      "elapsed": 37.1581,
+      "usage": {
+        "prompt_tokens": 316,
+        "completion_tokens": 100,
+        "total_tokens": 416
+      },
+      "at": "2026-11-03T21:02:47.422938+00:00"
+    },
+    {
+      "n": 2,
+      "name": "validate_schema",
+      "kind": "code",
+      "status": "ok",
+      "detail": "Валідація схеми та перевірка відсутності галюцинацій",
+      "input": "{\n  \"kind\": \"return\",\n  \"order_id\": \"10466\",\n  \"item\": \"пилосос\",\n  \"reason\": null,\n  \"quantity\": null,\n  \"needs_clarification\": false,\n  \"needs_operator\": false,\n  \"missing_data\": [],\n  \"comment\": \"Повернення пилососа за замовленням 10466\"\n}",
+      "output": {
+        "kind": "return",
+        "order_id": "10466",
+        "item": "пилосос",
+        "reason": null,
+        "quantity": 1,
+        "needs_clarification": false,
+        "needs_operator": false,
+        "missing_data": [],
+        "comment": "Повернення пилососа за замовленням 10466"
+      },
+      "elapsed": 0.0038,
+      "usage": null,
+      "at": "2026-11-03T21:02:47.426818+00:00"
+    }
+  ],
+  "data": {
+    "customer_id": "C-1001",
+    "parsed": {
+      "kind": "return",
+      "order_id": "10466",
+      "item": "пилосос",
+      "reason": null,
+      "quantity": 1,
+      "needs_clarification": false,
+      "needs_operator": false,
+      "missing_data": [],
+      "comment": "Повернення пилососа за замовленням 10466"
+    }
+  },
+  "pending": null,
+  "decision": null,
+  "reply": null,
+  "stopped": "перевищено час виконання (60 с)",
+  "usage": {
+    "prompt_tokens": 316,
+    "completion_tokens": 100,
+    "total_tokens": 416
+  },
+  "elapsed": {
+    "model": 37.1581,
+    "total": 37.1619,
+    "code": 0.0038
+  },
+  "created_at": "2026-11-03T21:02:10.264796+00:00",
+  "updated_at": "2026-11-03T21:02:47.426834+00:00"
+}
